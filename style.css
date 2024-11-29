@@ -24,8 +24,9 @@ body {
 }
 
 .navbar {
-    background: var(--logoyellow);
+    background-color: transparent;
     height: 70px;
+    transition: 0.3s ease;
 
     .container {
         display: flex;
@@ -33,18 +34,21 @@ body {
 
         .left {
             display: flex;
+            justify-content: center;
 
             a.navbar-brand {
-                color: var(--logoblue);
+                color: var(--light);
                 font-family: 'Montserrat';
                 font-weight: 1000;
                 font-size: 25px;
                 display: flex;
                 align-items: center;
                 gap: 5px;
+                transition: 0.3s ease;
 
                 img {
                     width: 60px;
+                    filter: brightness(100);
                 }
             }
         }
@@ -100,7 +104,9 @@ body {
                 li {
                     a {
                         font-family: 'Montserrat';
-                        font-weight: bold;
+                        font-weight: 1000;
+                        color: var(--light);
+                        opacity: 1;
                     }
                 }
             }
@@ -108,9 +114,56 @@ body {
             .person {
                 .outline-icon {
                     display: block;
+                    fill: var(--light);
                 }
                 .fill-icon {
                     display: none;
+                    fill: var(--light);
+                }
+            }
+            .person:hover {
+                .outline-icon {
+                    display: none;
+                }
+                .fill-icon {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+.navbar.scrolled {
+    background-color: var(--logoyellow);
+
+    .container {
+        a.navbar-brand {
+            color: var(--logoblue);
+
+            img {
+                filter: brightness(1);
+            }
+        }
+
+        button.navbar-toggler .line {
+            background: var(--logoblue);
+        }
+
+        .right {
+            ul {
+                li {
+                    a {
+                        color: var(--logoblue);
+                    }
+                }
+            }
+            .person {
+                .outline-icon {
+                    display: block;
+                    fill: var(--logoblue);
+                }
+                .fill-icon {
+                    display: none;
+                    fill: var(--logoblue);
                 }
             }
             .person:hover {
@@ -126,7 +179,18 @@ body {
 }
 @media (max-width: 767px) {
     .navbar {
+        background-color: var(--logoyellow);
+
         .container {
+            .left {
+                a.navbar-brand {
+                    color: var(--logoblue);
+
+                    img {
+                        filter: brightness(1);
+                    }
+                }
+            }
             .right {
                 display: none;
             }
@@ -148,8 +212,11 @@ body {
     border-left: 3px solid var(--dark);
     z-index: 9999;
     overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 
-    ul {
+    .pages {
         a {
             padding: 15px;
             color: var(--logoblue);
@@ -160,6 +227,37 @@ body {
         }
         a:hover {
             background-color: rgba(0, 0, 0, 0.30);
+        }
+    }
+    .sign-in-container {
+        padding: 15px;
+        height: auto;
+        width: 100%;
+
+        a.sign-in {
+            padding: 15px 50px;
+            font-size: 18px;
+            color: var(--light);
+            background: linear-gradient(90deg, #0a336d, #1e90ff);
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.8), 
+                        0 0 30px rgba(30, 144, 255, 0.5);
+            font-family: 'Montserrat';
+            font-weight: 1000;
+            text-decoration: none;
+        }
+        a.sign-in:hover {
+            box-shadow: 0 0 25px rgba(30, 144, 255, 1), 
+                        0 0 50px rgba(30, 144, 255, 0.7);
+            transform: scale(1.1); /* Slight zoom effect */
+        }
+        a.sign-in:active {
+            transform: scale(1.05); /* Reduce zoom effect on click */
+            box-shadow: 0 0 15px rgba(30, 144, 255, 1);
         }
     }
 }
@@ -185,7 +283,8 @@ body {
     background: rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
-    transition: 0.3s ease
+    transition: 0.3s ease;
+    z-index: 9998;
 }
 .sidebar-under.show {
     visibility: visible;
@@ -197,78 +296,109 @@ header {
     width: 100vw;
 }
 
-.cards {
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.card-container {
     width: 100%;
-    height: 480px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    overflow-y: scroll;
+    overflow: hidden;
+    position: relative;
     background: linear-gradient(to bottom, transparent, var(--light) 50%);
+    display: flex;
 
-    .item {
-        flex-shrink: 0;
-        height: 450px;
-        width: 300px;
-        background: var(--logoblue);
-        border: 2px solid rgba(248, 249, 250, 0.5);
-        border-radius: 15px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        transition: 0.15s ease;
-
-        .overlay {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background: linear-gradient(to bottom, transparent 35%, rgba(0, 0, 0, 0.85));
-            display: flex;
-            align-items: end;
-            justify-content: center;
-        
-            .text {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                padding: 20px;
-                height: auto;
+    .cards {
+        width: max-content;
+        height: 480px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        scroll-behavior: smooth;
+        animation: slide 20s infinite linear;
+    
+        .item {
+            flex-shrink: 0;
+            height: 450px;
+            width: 300px;
+            background: var(--logoblue);
+            border: 2px solid rgba(248, 249, 250, 0.5);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            transition: 0.15s ease;
+    
+            .overlay {
+                position: absolute;
+                height: 100%;
                 width: 100%;
-
-                p {
-                    font-family: 'Montserrat';
-                    font-weight: bold;
-                    color: var(--light);
-                    font-size: 26px;
-                }
-
-                a {
-                    background: var(--logoyellow);
-                    width: auto;
-                    color: var(--logoblue);
-                    font-family: 'Montserrat';
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    font-weight: bold;
-                    padding: 10px 15px;
-                    width: max-content;
-                    font-size: 14px;
+                top: 0;
+                left: 0;
+                background: linear-gradient(to bottom, transparent 35%, rgba(0, 0, 0, 0.85));
+                display: flex;
+                align-items: end;
+                justify-content: center;
+            
+                .text {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 20px;
+                    height: auto;
+                    width: 100%;
+    
+                    p {
+                        font-family: 'Montserrat';
+                        font-weight: bold;
+                        color: var(--light);
+                        font-size: 26px;
+                    }
+    
+                    a {
+                        background: var(--logoyellow);
+                        width: auto;
+                        color: var(--logoblue);
+                        font-family: 'Montserrat';
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        padding: 10px 15px;
+                        width: max-content;
+                        font-size: 14px;
+                    }
                 }
             }
         }
+        .item:hover {
+            scale: 1.015;
+        }
+        .item:nth-child(1) {
+            background: url('images/soccer.webp') center/cover no-repeat;
+            margin-left: 19px;
+        }
+        .item:nth-child(2) {
+            background: url('images/tifo.jpg') center/cover no-repeat;
+        }
+        .item:nth-child(3) {
+            background: url('images/meta\ ai.webp') center/cover no-repeat;
+        }
     }
-    .item:hover {
-        scale: 1.01;
-    }
-    .item:nth-child(1) {
-        background: url('images/soccer.webp') center/cover no-repeat;
-    }
-    .item:nth-child(2) {
-        background: url('images/tifo.jpg') center/cover no-repeat;
+    .cards::-webkit-scrollbar {
+        display: none;
     }
 }
-.cards::-webkit-scrollbar {
-    display: none;
+.card-container:hover .cards {
+    animation-play-state: paused;
+}
+
+footer {
+    background: #000;
+
+    .bottom {
+        color: rgba(248, 249, 250, 0.5);
+    }
 }
