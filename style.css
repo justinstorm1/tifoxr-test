@@ -310,6 +310,8 @@ header {
     position: relative;
     background: linear-gradient(to bottom, transparent, var(--light) 50%);
     display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
 
     .cards {
         width: max-content;
@@ -387,9 +389,9 @@ header {
             background: url('images/meta\ ai.webp') center/cover no-repeat;
         }
     }
-    .cards::-webkit-scrollbar {
-        display: none;
-    }
+}
+.card-container::-webkit-scrollbar {
+    display: none;
 }
 .card-container:hover .cards {
     animation-play-state: paused;

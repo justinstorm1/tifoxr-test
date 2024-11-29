@@ -21,5 +21,20 @@ window.addEventListener('scroll', function() {
 });
 
 const cards = document.querySelector(".cards");
-const cardsCopy = cards.cloneNode(true);
-document.querySelector(".card-container").appendChild(cardsCopy);
+const cardContainer = document.querySelector('.card-container');
+const cardsBefore = cards.cloneNode(true);
+const cardsAfter = cards.cloneNode(true);
+
+cardContainer.insertBefore(cardsBefore, cards);
+cardContainer.appendChild(cardsAfter);
+
+const scrollWidth = cards.scrollWidth;
+cardContainer.scrollLeft = scrollWidth;
+
+cardContainer.addEventListener('scroll', () => {
+    if (cardContainer.scrollLeft < scrollWidth / 2) {
+        cardContainer.scrollLeft += scrollWidth;
+    } else if (cardContainer.scrollLeft >= scrollWidth * 1.5) {
+        cardContainer.scrollLeft -= scrollWidth;
+    }
+})
