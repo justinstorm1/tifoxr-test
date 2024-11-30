@@ -27,6 +27,7 @@ body {
     background-color: transparent;
     height: 70px;
     transition: 0.3s ease;
+    overflow: hidden;
 
     .container {
         display: flex;
@@ -107,6 +108,7 @@ body {
                         font-weight: 1000;
                         color: var(--light);
                         opacity: 1;
+                        position: relative;
                     }
                 }
             }
@@ -153,6 +155,30 @@ body {
                 li {
                     a {
                         color: var(--logoblue);
+                    }
+                    a::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -15px;
+                        left: 50%;
+                        height: 5px;
+                        width: 0;
+                        background: var(--logoblue);
+                        transition: 0.3s ease;
+                        transform: translateX(-50%);
+                    }
+                    a.active::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -15px;
+                        left: 50%;
+                        height: 5px;
+                        width: calc(100% + 2px);
+                        background: var(--logoblue);
+                        transform: translateX(-50%);
+                    }
+                    a:hover::after {
+                        width: 100%;
                     }
                 }
             }
@@ -295,6 +321,11 @@ header {
     height: 100vh;
     width: 100vw;
 }
+@media (max-width: 767px) {
+    header {
+        height: 50vh;
+    }
+}
 
 @keyframes slide {
     from {
@@ -331,8 +362,9 @@ header {
             border-radius: 15px;
             position: relative;
             overflow: hidden;
+            text-wrap: wrap;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            transition: 0.15s ease;
+            transition: 0.3s ease;
     
             .overlay {
                 position: absolute;
@@ -375,9 +407,6 @@ header {
                 }
             }
         }
-        .item:hover {
-            scale: 1.015;
-        }
         .item:nth-child(1) {
             background: url('images/soccer.webp') center/cover no-repeat;
             margin-left: 19px;
@@ -388,6 +417,9 @@ header {
         .item:nth-child(3) {
             background: url('images/meta\ ai.webp') center/cover no-repeat;
         }
+        .item:hover {
+            scale: 1.015;
+        }
     }
 }
 .card-container::-webkit-scrollbar {
@@ -396,11 +428,57 @@ header {
 .card-container:hover .cards {
     animation-play-state: paused;
 }
+@media (max-width: 767px) {
+    .card-container {
+        scale: 0.8;
+        width: calc(100% + 30%);
+        transform-origin: bottom left;
+    }
+}
 
 footer {
     background: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .links {
+        display: flex;
+        justify-content: space-evenly;
+
+        .link-column {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                font-family: 'Montserrat';
+                font-weight: bold;
+                text-decoration: none;
+                color: var(--light);
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 
     .bottom {
         color: rgba(248, 249, 250, 0.5);
     }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+.appear {
+    animation: appear linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
 }
