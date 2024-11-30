@@ -156,21 +156,10 @@ body {
                     a {
                         color: var(--logoblue);
                     }
-                    a::after {
-                        content: '';
-                        position: absolute;
-                        bottom: -15px;
-                        left: 50%;
-                        height: 5px;
-                        width: 0;
-                        background: var(--logoblue);
-                        transition: 0.3s ease;
-                        transform: translateX(-50%);
-                    }
                     a.active::after {
                         content: '';
                         position: absolute;
-                        bottom: -15px;
+                        bottom: -16.5px;
                         left: 50%;
                         height: 5px;
                         width: calc(100% + 2px);
