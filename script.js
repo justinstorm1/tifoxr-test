@@ -37,4 +37,4 @@ cardContainer.addEventListener('scroll', () => {
     } else if (cardContainer.scrollLeft >= scrollWidth * 1.5) {
         cardContainer.scrollLeft -= scrollWidth;
     }
-})
+});
