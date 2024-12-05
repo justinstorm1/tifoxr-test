@@ -12,6 +12,14 @@ function navbarTogglerToggle() {
     navbarToggler.classList.toggle('clicked');
 }
 
+window.addEventListener('resize', () => {
+    if (this.window.innerWidth > 767) {
+        sidebar.classList.remove('show');
+        sidebarUnder.classList.remove('show');
+        navbarToggler.classList.remove('clicked')
+    }
+});
+
 window.addEventListener('scroll', function() {
     if (this.window.scrollY > 0) {
         navbar.classList.add('scrolled');
