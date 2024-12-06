@@ -270,7 +270,7 @@ body {
     opacity: 1;
 }
 
-div.header {
+.header {
     background: url('images/soccer.webp') top/cover no-repeat;
     padding-top: 75px;
     padding-bottom: 75px;
@@ -282,6 +282,11 @@ div.header {
         text-transform: uppercase;
         font-size: 75px;
         text-shadow: 4px 4px 5px #000;
+    }
+}
+@media (max-width: 767px) {
+    .header h1 {
+        font-size: 50px;
     }
 }
 
@@ -315,6 +320,11 @@ footer {
                 a {
                     svg {
                         fill: var(--light);
+                    }
+                }
+                a:hover {
+                    svg {
+                        fill: var(--logoyellow);
                     }
                 }
             }

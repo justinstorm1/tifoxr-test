@@ -382,11 +382,6 @@ header {
         }
     }
 }
-@media (max-width: 767px) {
-    header {
-        height: 70vh;
-    }
-}
 
 .card-container {
     padding-top: 70px;
@@ -483,6 +478,7 @@ header {
 }
 @media (max-width: 767px) {
     .card-container {
+        padding-top: 90px;
         scale: 0.8;
         width: calc(100% + 30%);
         transform-origin: bottom left;
@@ -527,6 +523,11 @@ footer {
                 a {
                     svg {
                         fill: var(--light);
+                    }
+                }
+                a:hover {
+                    svg {
+                        fill: var(--logoyellow);
                     }
                 }
             }
