@@ -30,7 +30,7 @@ body {
 }
 
 .navbar {
-    background-color: transparent;
+    background-color: var(--logoyellow);
     height: 70px;
     transition: 0.3s ease;
     overflow: hidden;
@@ -44,7 +44,7 @@ body {
             justify-content: center;
 
             a.navbar-brand {
-                color: var(--light);
+                color: var(--logoblue);
                 font-family: 'Montserrat';
                 font-weight: 1000;
                 font-size: 25px;
@@ -55,7 +55,7 @@ body {
 
                 img {
                     width: 60px;
-                    filter: brightness(100);
+                    filter: brightness(1);
                 }
             }
         }
@@ -112,9 +112,26 @@ body {
                     a {
                         font-family: 'Montserrat';
                         font-weight: 1000;
-                        color: var(--light);
+                        color: var(--logoblue);
                         opacity: 1;
                         position: relative;
+                    }
+                    a::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -16.5px;
+                        left: 50%;
+                        height: 5px;
+                        width: 0;
+                        background: var(--logoblue);
+                        transform: translateX(-50%);
+                        transition: 0.3s;
+                    }
+                    a.active::after {
+                        width: calc(100% + 2px);
+                    }
+                    a:hover::after {
+                        width: calc(100% + 2px);
                     }
                 }
             }
@@ -122,11 +139,11 @@ body {
             .person {
                 .outline-icon {
                     display: block;
-                    fill: var(--light);
+                    fill: var(--logoblue);
                 }
                 .fill-icon {
                     display: none;
-                    fill: var(--light);
+                    fill: var(--logoblue);
                 }
             }
             .person:hover {
@@ -140,6 +157,7 @@ body {
         }
     }
 }
+/*
 .navbar.scrolled {
     background-color: var(--logoyellow);
 
@@ -202,6 +220,7 @@ body {
         }
     }
 }
+*/
 @media (max-width: 767px) {
     .navbar {
         background-color: var(--logoyellow);
