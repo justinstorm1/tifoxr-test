@@ -18,7 +18,7 @@ html {
 }
 
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('images/soccer.webp') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('images/soccer\ pics/abigail-keenan-8-s5QuUBtyM-unsplash.jpg') center/cover no-repeat;
     background-attachment: fixed;
     overflow: hidden;
     overflow-y: scroll;
@@ -52,6 +52,11 @@ body {
                 align-items: center;
                 gap: 5px;
                 transition: 0.3s ease;
+
+                sup {
+                    position: relative;
+                    top: -5px;
+                }
 
                 img {
                     width: 60px;
@@ -137,6 +142,7 @@ body {
             }
 
             .person {
+                display: none;
                 .outline-icon {
                     display: block;
                     fill: var(--logoblue);
@@ -282,6 +288,7 @@ body {
         width: 100%;
 
         a.sign-in {
+            display: none;
             padding: 15px 50px;
             font-size: 18px;
             color: var(--light);
@@ -526,7 +533,7 @@ footer {
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 90px;
+            gap: 50px;
     
             .image {
                 img {
@@ -556,7 +563,7 @@ footer {
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
-            gap: 100px;
+            gap: 50px;
 
             .link-column {
                 display: flex;
@@ -597,9 +604,10 @@ footer {
         border-radius: 20px;
     }
 }
-@media (max-width: 335px) {
+@media (max-width: 350px) {
     footer .container-fluid .top .image,
-    footer .container-fluid .top .socials {
+    footer .container-fluid .top .socials,
+    footer .container-fluid .links .link-column {
         width: 100%;
         display: flex;
         justify-content: center;

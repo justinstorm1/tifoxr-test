@@ -49,6 +49,11 @@ body {
                 gap: 5px;
                 transition: 0.3s ease;
 
+                sup {
+                    position: relative;
+                    top: -5px;
+                }
+
                 img {
                     width: 60px;
                     /* filter: brightness(100); */
@@ -133,6 +138,7 @@ body {
             }
 
             .person {
+                display: none;
                 .outline-icon {
                     display: block;
                     fill: var(--logoblue);
@@ -214,6 +220,7 @@ body {
         width: 100%;
 
         a.sign-in {
+            display: none;
             padding: 15px 50px;
             font-size: 18px;
             color: var(--light);
@@ -271,7 +278,7 @@ body {
 }
 
 .header {
-    background: url('images/soccer.webp') top/cover no-repeat;
+    background: url('images/soccer\ pics/abigail-keenan-8-s5QuUBtyM-unsplash.jpg') bottom/cover no-repeat;
     padding-top: 75px;
     padding-bottom: 75px;
 
@@ -290,6 +297,23 @@ body {
     }
 }
 
+#gallery {
+    .row {
+        .col-lg-6 {
+            p {
+                font-family: 'Montserrat';
+                font-weight: bold;
+                font-size: 20px;
+                margin: 0;
+            }
+        }
+        .col-lg-6:nth-child(2) {
+            background: var(--logoblue);
+            color: var(--logoyellow);
+        }
+    }
+}
+
 footer {
     background: #000;
 
@@ -304,7 +328,7 @@ footer {
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 90px;
+            gap: 50px;
     
             .image {
                 img {
@@ -334,7 +358,7 @@ footer {
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
-            gap: 100px;
+            gap: 50px;
 
             .link-column {
                 display: flex;
@@ -375,9 +399,10 @@ footer {
         border-radius: 20px;
     }
 }
-@media (max-width: 335px) {
+@media (max-width: 350px) {
     footer .container-fluid .top .image,
-    footer .container-fluid .top .socials {
+    footer .container-fluid .top .socials,
+    footer .container-fluid .links .link-column {
         width: 100%;
         display: flex;
         justify-content: center;
